@@ -1,0 +1,19 @@
+/* user-list.component.css */
+.mat-list-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.mat-list-item:last-child {
+  border-bottom: none;
+}
+
+.mat-list-icon {
+  color: #007bff; /* Màu sắc biểu tượng */
+  margin-right: 10px;
+}
+
+.mat-elevation-z2 {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}

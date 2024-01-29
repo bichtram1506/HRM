@@ -1,0 +1,12 @@
+<!-- user-list.component.html -->
+<h2>Danh sách Phòng ban</h2>
+<div class="department-list">
+  <div *ngFor="let department of departments" class="department-item">
+    <div class="department-info">
+      <p><strong>Tên:</strong> {{ department.name }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- src/app/components/department-list/department-list.component.html -->
+

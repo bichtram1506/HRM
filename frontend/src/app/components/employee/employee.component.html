@@ -1,0 +1,14 @@
+<h2>Danh sách Nhân viên</h2>
+<div class="employee-list">
+  <div *ngFor="let employee of employees" class="employee-item">
+    <div class="employee-info">
+      <p><strong>Tên:</strong> {{ employee.name }}</p>
+      <p><strong>Phòng ban:</strong> {{ employee.department?.name }}</p>
+      <p><strong>Loại nhân viên:</strong> {{ employee.employee_type?.name }}</p>
+      <p><strong>Cấp độ:</strong> {{ employee.level?.name }}</p>
+      <p><strong>Vị trí:</strong> {{ employee.position?.name }}</p>
+      <p><strong>Trình độ:</strong> {{ employee.qualification?.name }}</p>
+      <p><strong>Chuyên ngành:</strong> {{ employee.specialization?.name }}</p>
+    </div>
+  </div>
+</div>

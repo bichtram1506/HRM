@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+/* styles.css */
+/* styles.css */
+
+/* styles.css hoặc styles.scss */
+/* styles.css hoặc styles.scss */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Add other global styles as needed */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* user-list.component.css */
+.mat-list-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.mat-list-item:last-child {
+  border-bottom: none;
+}
+
+.mat-list-icon {
+  color: #007bff; /* Màu sắc biểu tượng */
+  margin-right: 10px;
+}
+
+.mat-elevation-z2 {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
