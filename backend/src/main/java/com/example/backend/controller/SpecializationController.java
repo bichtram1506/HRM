@@ -1,8 +1,10 @@
 package com.example.backend.controller;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.model.Specialization;
 import com.example.backend.repository.SpecializationRepository;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/specializations")
 public class SpecializationController {
@@ -27,9 +30,10 @@ public class SpecializationController {
 
     @GetMapping
     public List<Specialization> getAllSpecializations() {
-        return specializationRepository.findAll();
+        List<Specialization> specializations = specializationRepository.findAll();
+        specializations.sort(Comparator.comparingLong(Specialization::getId));
+        return specializations;
     }
-
     @GetMapping("/{id}")
     public Optional<Specialization> getSpecializationById(@PathVariable Long id) {
         return specializationRepository.findById(id);

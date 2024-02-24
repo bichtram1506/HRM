@@ -1,22 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
-/* styles.css */
-/* styles.css */
-
-/* styles.css hoặc styles.scss */
-/* styles.css hoặc styles.scss */
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-
+html,
 body {
-  font-family: Arial, sans-serif;
+  height: 40%;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
 }
 
-/* Add other global styles as needed */
+body {
+  width: 100%;
+  max-width: 1200px; /* Giả sử bạn muốn body có chiều rộng tối đa là 1200px */
+  margin: 0 auto; /* Canh giữa body */
+  padding: 20px; /* Thêm khoảng trắng bên trong body nếu cần */
+  box-sizing: border-box; /* Hạn định chiều rộng của padding và border trong tổng chiều rộng */
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+app-root {
+  width: 100%;
+  max-width: 1200px; /* Đặt độ rộng tối đa cho giao diện */
+  margin: 0 auto; /* Căn giữa giao diện */
+}
 /* user-list.component.css */
 .mat-list-item {
   border-bottom: 1px solid #ddd;
@@ -36,3 +45,86 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-radius: 5px;
   overflow: hidden;
 }
+/* user-list.component.css (hoặc bạn có thể thêm trực tiếp vào user-list.component.html) */
+/* Cố định navbar ở trên cùng */
+app-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Đảm bảo navbar hiển thị trên tất cả các phần tử khác */
+}
+
+/* Cố định router-outlet để điều chỉnh nội dung dưới navbar */
+
+h2 {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Arial", sans-serif;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.table-responsive {
+  position: fixed;
+  top: 200px; /* Đặt khoảng cách từ h2 đến bảng */
+  width: 100% ;
+}
+/* Tệp CSS: department.component.css */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-container {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 10px 0;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+}
+
+/* Các lớp CSS khác của thành phần của bạn */

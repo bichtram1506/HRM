@@ -1,8 +1,11 @@
 package com.example.backend.controller;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.model.Level;
 import com.example.backend.repository.LevelRepository;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/levels")
 public class LevelController {
@@ -28,7 +32,9 @@ public class LevelController {
     // Endpoint để lấy tất cả các levels
     @GetMapping
     public List<Level> getAllLevels() {
-        return levelRepository.findAll();
+        List<Level> levels = levelRepository.findAll();
+        levels.sort(Comparator.comparingLong(Level::getId));
+        return levels;
     }
 
     // Endpoint để lấy một level dựa trên ID

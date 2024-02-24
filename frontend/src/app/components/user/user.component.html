@@ -1,9 +1,19 @@
 <!-- user-list.component.html -->
-<h2>Danh sách Người dùng</h2>
-<div class="user-list">
-  <div *ngFor="let user of users" class="user-item">
-    <div class="user-info">
-      <p><strong>Name:</strong> {{ user.name }}</p>
-    </div>
-  </div>
+<div class="heading-container">
+  <h2 class="mb-4">Danh sách Quản trị</h2>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Tên Người dùng</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

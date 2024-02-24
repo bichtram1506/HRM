@@ -8,3 +8,19 @@ mat-toolbar {
 .spacer {
   flex: 1;
 }
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  margin-left: 15px;
+}
+.nav-item.active {
+  background-color: #f8f9fa;
+  font-weight: bold; /* Làm cho mục menu được chọn in đậm */
+  /* Tùy chỉnh giao diện của mục menu được chọn */
+}

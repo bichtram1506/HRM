@@ -1,0 +1,99 @@
+<div class="heading-container">
+  <h2 class="mb-4">Danh sách Chuyên ngành</h2>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Mã </th>
+        <th scope="col">Tên Chuyên ngành</th>
+        <th scope="col">Mô tả</th>
+        <th scope="col">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let specialization of specializations">
+        <td>{{ specialization.code }}</td>
+        <td>{{ specialization.name }}</td>
+        <td>{{ specialization.description }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="showUpdateForm(specialization)">Sửa</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteSpecialization(specialization.id)">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="mt-4">
+  <button class="btn btn-primary" (click)="toggleAddForm()">Thêm mới</button>
+</h3>
+
+<!-- Modal for Add Specialization -->
+<div *ngIf="showAddForm" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-content">
+      <form (submit)="addSpecialization()">
+        <div class="modal-header">
+          <h5 class="modal-title">Thêm mới Chuyên ngành</h5>
+          <button type="button" class="close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="code">Mã Chuyên ngành:</label>
+            <input type="text" id="code" class="form-control" [(ngModel)]="newSpecialization.code" placeholder="Nhập mã chuyên ngành">
+          </div>
+          <div class="form-group">
+            <label for="name">Tên Chuyên ngành:</label>
+            <input type="text" id="name" class="form-control" [(ngModel)]="newSpecialization.name" placeholder="Nhập tên chuyên ngành">
+          </div>
+          <div class="form-group">
+            <label for="description">Mô tả:</label>
+            <textarea id="description" class="form-control" [(ngModel)]="newSpecialization.description" placeholder="Nhập mô tả"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Thêm</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Update Specialization -->
+<div *ngIf="isUpdateFormVisible" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-content">
+      <form (ngSubmit)="updateSpecialization()">
+        <div class="modal-header">
+          <h5 class="modal-title">Cập nhật Chuyên ngành</h5>
+          <button type="button" class="close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="updateCode">Mã Chuyên ngành:</label>
+            <input type="text" id="updateCode" [(ngModel)]="selectedSpecialization.code" name="code" required class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="updateName">Tên Chuyên ngành:</label>
+            <input type="text" id="updateName" [(ngModel)]="selectedSpecialization.name" name="name" required class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="updateDescription">Mô tả:</label>
+            <textarea id="updateDescription" [(ngModel)]="selectedSpecialization.description" name="description" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Cập nhật</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

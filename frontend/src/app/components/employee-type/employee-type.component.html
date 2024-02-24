@@ -1,21 +1,25 @@
 <div class="heading-container">
-  <h2 class="mb-4">Danh sách Phòng ban</h2>
+  <h2 class="mb-4">Danh sách Loại Nhân viên</h2>
 </div>
 
 <div class="table-responsive">
   <table class="table table-striped table-bordered">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Tên Phòng ban</th>
+        <th scope="col">Mã</th>
+        <th scope="col">Tên</th>
+        <th scope="col">Mô tả</th>
         <th scope="col">Thao tác</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let department of departments">
-        <td>{{ department.name }}</td>
+      <tr *ngFor="let employeeType of employeeTypes">
+        <td>{{ employeeType.code }}</td>
+        <td>{{ employeeType.name }}</td>
+        <td>{{ employeeType.description }}</td>
         <td>
-          <button class="btn btn-primary btn-sm" (click)="showUpdateForm(department)">Sửa</button>
-          <button class="btn btn-danger btn-sm" (click)="deleteDepartment(department.id)">Xóa</button>
+          <button class="btn btn-primary btn-sm" (click)="showUpdateForm(employeeType)">Sửa</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteEmployeeType(employeeType.id)">Xóa</button>
         </td>
       </tr>
     </tbody>
@@ -26,25 +30,29 @@
   <button class="btn btn-primary" (click)="toggleAddForm()">Thêm mới</button>
 </h3>
 
-<!-- Modal for Add Department -->
+<!-- Modal for Add Employee Type -->
 <div *ngIf="showAddForm" class="modal-overlay">
   <div class="modal-container">
     <div class="modal-content">
-      <form (submit)="addDepartment()">
+      <form (submit)="addEmployeeType()">
         <div class="modal-header">
-          <h5 class="modal-title">Thêm mới Phòng ban</h5>
+          <h5 class="modal-title">Thêm mới Loại Nhân viên</h5>
           <button type="button" class="close" (click)="closeModal()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="name">Tên Phòng ban:</label>
-            <input type="text" id="name" class="form-control" [(ngModel)]="newDepartment.name" placeholder="Nhập tên phòng ban">
+            <label for="code">Mã:</label>
+            <input type="text" id="code" class="form-control" [(ngModel)]="newEmployeeType.code" placeholder="Nhập mã loại nhân viên">
+          </div>
+          <div class="form-group">
+            <label for="name">Tên:</label>
+            <input type="text" id="name" class="form-control" [(ngModel)]="newEmployeeType.name" placeholder="Nhập tên loại nhân viên">
           </div>
           <div class="form-group">
             <label for="description">Mô tả:</label>
-            <textarea id="description" class="form-control" [(ngModel)]="newDepartment.description" placeholder="Nhập mô tả"></textarea>
+            <textarea id="description" class="form-control" [(ngModel)]="newEmployeeType.description" placeholder="Nhập mô tả"></textarea>
           </div>
         </div>
         <div class="modal-footer">
@@ -56,26 +64,29 @@
   </div>
 </div>
 
-<!-- Modals for Update Departments -->
-<!-- Modals for Update Departments -->
+<!-- Modals for Update Employee Types -->
 <div *ngIf="isUpdateFormVisible" class="modal-overlay">
   <div class="modal-container">
     <div class="modal-content">
-      <form (ngSubmit)="updateDepartment()">
+      <form (ngSubmit)="updateEmployeeType()">
         <div class="modal-header">
-          <h5 class="modal-title">Cập nhật Phòng ban</h5>
+          <h5 class="modal-title">Cập nhật Loại Nhân viên</h5>
           <button type="button" class="close" (click)="closeModal()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="updateName">Tên Phòng ban:</label>
-            <input type="text" id="name" [(ngModel)]="selectedDepartment.name" name="name" required class="form-control" >
+            <label for="updateCode">Mã:</label>
+            <input type="text" id="code" [(ngModel)]="selectedEmployeeType.code" name="code" required class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="updateName">Tên:</label>
+            <input type="text" id="name" [(ngModel)]="selectedEmployeeType.name" name="name" required class="form-control">
           </div>
           <div class="form-group">
             <label for="updateDescription">Mô tả:</label>
-            <textarea  id="description" [(ngModel)]="selectedDepartment.description" name="description" class="form-control" ></textarea>
+            <textarea id="description" [(ngModel)]="selectedEmployeeType.description" name="description" class="form-control"></textarea>
           </div>
         </div>
         <div class="modal-footer">

@@ -1,14 +1,142 @@
-<h2>Danh sách Nhân viên</h2>
-<div class="employee-list">
-  <div *ngFor="let employee of employees" class="employee-item">
-    <div class="employee-info">
-      <p><strong>Tên:</strong> {{ employee.name }}</p>
-      <p><strong>Phòng ban:</strong> {{ employee.department?.name }}</p>
-      <p><strong>Loại nhân viên:</strong> {{ employee.employee_type?.name }}</p>
-      <p><strong>Cấp độ:</strong> {{ employee.level?.name }}</p>
-      <p><strong>Vị trí:</strong> {{ employee.position?.name }}</p>
-      <p><strong>Trình độ:</strong> {{ employee.qualification?.name }}</p>
-      <p><strong>Chuyên ngành:</strong> {{ employee.specialization?.name }}</p>
+<div class="heading-container">
+  <h2 class="mb-4">Danh sách Nhân viên</h2>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Tên</th>
+        <th scope="col">Phòng ban</th>
+        <th scope="col">Loại nhân viên</th>
+        <th scope="col">Cấp độ</th>
+        <th scope="col">Vị trí</th>
+        <th scope="col">Trình độ</th>
+        <th scope="col">Chuyên ngành</th>
+        <th scope="col">Thao tác</th> <!-- Added for actions -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.departmentName }}</td>
+        <td>{{ employee.employeeTypeName }}</td>
+        <td>{{ employee.levelName }}</td>
+        <td>{{ employee.positionName }}</td>
+        <td>{{ employee.qualificationName }}</td>
+        <td>{{ employee.specializationName }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="showUpdateForm(employee)">Sửa</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employee.id)">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="mt-4">
+  <button class="btn btn-primary" (click)="toggleAddForm()">Thêm mới</button>
+</h3>
+
+<!-- Modal for Add Employee -->
+<div *ngIf="showAddForm" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-content">
+      <form (submit)="addEmployee()">
+        <div class="modal-header">
+          <h5 class="modal-title">Thêm mới Nhân viên</h5>
+          <button type="button" class="close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Add employee form fields here -->
+          <div class="form-group">
+            <label for="name">Tên:</label>
+            <input type="text" id="name" class="form-control" [(ngModel)]="newEmployee.name" placeholder="Nhập tên">
+          </div>
+          <div class="form-group">
+            <label for="department">Phòng ban:</label>
+            <input type="text" id="department" class="form-control" [(ngModel)]="newEmployee.departmentName" placeholder="Nhập phòng ban">
+          </div>
+          <div class="form-group">
+            <label for="employeeType">Loại nhân viên:</label>
+            <input type="text" id="employeeType" class="form-control" [(ngModel)]="newEmployee.employeeTypeName" placeholder="Nhập loại nhân viên">
+          </div>
+          <div class="form-group">
+            <label for="level">Cấp độ:</label>
+            <input type="text" id="level" class="form-control" [(ngModel)]="newEmployee.levelName" placeholder="Nhập cấp độ">
+          </div>
+          <div class="form-group">
+            <label for="position">Vị trí:</label>
+            <input type="text" id="position" class="form-control" [(ngModel)]="newEmployee.positionName" placeholder="Nhập vị trí">
+          </div>
+          <div class="form-group">
+            <label for="qualification">Trình độ:</label>
+            <input type="text" id="qualification" class="form-control" [(ngModel)]="newEmployee.qualificationName" placeholder="Nhập trình độ">
+          </div>
+          <div class="form-group">
+            <label for="specialization">Chuyên ngành:</label>
+            <input type="text" id="specialization" class="form-control" [(ngModel)]="newEmployee.specializationName" placeholder="Nhập chuyên ngành">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Thêm</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Hủy</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
+
+<!-- Modal for Update Employee -->
+<div *ngIf="isUpdateFormVisible" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-content">
+      <form (submit)="updateEmployee()">
+        <div class="modal-header">
+          <h5 class="modal-title">Cập nhật Nhân viên</h5>
+          <button type="button" class="close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Update employee form fields here -->
+          <div class="form-group">
+            <label for="updateName">Tên:</label>
+            <input type="text" id="updateName" class="form-control" [(ngModel)]="selectedEmployee.name" placeholder="Nhập tên">
+          </div>
+          <div class="form-group">
+            <label for="updateDepartment">Phòng ban:</label>
+            <input type="text" id="updateDepartment" class="form-control" [(ngModel)]="selectedEmployee.departmentName" placeholder="Nhập phòng ban">
+          </div>
+          <div class="form-group">
+            <label for="updateEmployeeType">Loại nhân viên:</label>
+            <input type="text" id="updateEmployeeType" class="form-control" [(ngModel)]="selectedEmployee.employeeTypeName" placeholder="Nhập loại nhân viên">
+          </div>
+          <div class="form-group">
+            <label for="updateLevel">Cấp độ:</label>
+            <input type="text" id="updateLevel" class="form-control" [(ngModel)]="selectedEmployee.levelName" placeholder="Nhập cấp độ">
+          </div>
+          <div class="form-group">
+            <label for="updatePosition">Vị trí:</label>
+            <input type="text" id="updatePosition" class="form-control" [(ngModel)]="selectedEmployee.positionName" placeholder="Nhập vị trí">
+          </div>
+          <div class="form-group">
+            <label for="updateQualification">Trình độ:</label>
+            <input type="text" id="updateQualification" class="form-control" [(ngModel)]="selectedEmployee.qualificationName" placeholder="Nhập trình độ">
+          </div>
+          <div>
+            <label for="updateSpecialization">Chuyên ngành:</label>
+            <input type="text" id="updateSpecialization" class="form-control" [(ngModel)]="selectedEmployee.specializationName" placeholder="Nhập chuyên ngành">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Cập nhật</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

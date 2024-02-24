@@ -1,22 +1,36 @@
-<!-- navbar.component.html -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/">Admin Dashboard</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/users">Quản lý người dùng</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/departments">Quản lý phòng ban</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/employees">Quản lý Nhân sự</a>
-      </li>
-
-      <!-- Thêm các mục menu khác cần thiết -->
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-navbar">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Admin Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/users">Quản lý người dùng</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/departments">Quản lý phòng ban</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/employees">Quản lý Nhân sự</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/levels">Quản lý Cấp độ</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/qualifications">Quản lý trình độ</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/specializations">Quản lý chuyên môn</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/employee-types">Quản lý loại nhân viên</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/positions">Quản lý chức vụ</a> <!-- Thêm mục quản lý vị trí -->
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

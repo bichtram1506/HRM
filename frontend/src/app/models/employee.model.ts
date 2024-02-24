@@ -1,24 +1,23 @@
-import { Department } from './department.model';
-import { EmployeeType } from './employee-type.model';
-import { Level } from './level.model';
-import { Position } from './position.model';
-import { Qualification } from './qualification.model';
-import { Specialization } from './specialization.model';
+// employee.model.ts
 
 export interface Employee {
   id: number;
   name: string;
-  sex: string;
-  marital_status: string;
-  hometown: string;
-  avatar: string;
-  email: string;
-  status: string;
-  employee_type_id: EmployeeType;
-  level_id: Level;
-  department_id: Department;
-  position_id: Position;
-  qualification_id: Qualification;
-  specialization_id: Specialization;
-  // Thêm các trường khác nếu cần thiết
+  // other fields...
+
+  // Foreign key fields
+  department_id: number;
+  employee_type_id: number;
+  level_id: number;
+  position_id: number;
+  qualification_id: number;
+  specialization_id: number;
+
+  // Additional fields for related entity names
+  departmentName?: string;
+  employeeTypeName?: string;
+  levelName?: string;
+  positionName?: string;
+  qualificationName?: string;
+  specializationName?: string;
 }

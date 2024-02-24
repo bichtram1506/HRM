@@ -1,8 +1,11 @@
 package com.example.backend.controller;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.model.EmployeeType;
 import com.example.backend.repository.EmployeeTypeRepository;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/employee-types")
 public class EmployeeTypeController {
@@ -28,7 +32,9 @@ public class EmployeeTypeController {
     // Endpoint để lấy tất cả các employee types
     @GetMapping
     public List<EmployeeType> getAllEmployeeTypes() {
-        return employeeTypeRepository.findAll();
+        List<EmployeeType> employeeTypes = employeeTypeRepository.findAll();
+        employeeTypes.sort(Comparator.comparingLong(EmployeeType::getId));
+        return employeeTypes;
     }
 
     // Endpoint để lấy một employee type dựa trên ID

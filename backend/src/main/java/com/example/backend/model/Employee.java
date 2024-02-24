@@ -1,9 +1,12 @@
 package com.example.backend.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -55,6 +58,56 @@ public class Employee {
         this.position_id = position_id;
         this.qualification_id = qualification_id;
         this.specialization_id = specialization_id;
+    }
+  @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_type_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private EmployeeType employeeType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "level_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Level level;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Department department;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "position_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Position position;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "qualification_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Qualification qualification;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "specialization_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private Specialization specialization;
+
+    // ... existing methods
+
+    // Additional getter methods for related entity details
+    public String getEmployeeTypeName() {
+        return employeeType != null ? employeeType.getName() : null;
+    }
+
+    public String getLevelName() {
+        return level != null ? level.getName() : null;
+    }
+
+    public String getDepartmentName() {
+        return department != null ? department.getName() : null;
+    }
+
+    public String getPositionName() {
+        return position != null ? position.getName() : null;
+    }
+
+    public String getQualificationName() {
+        return qualification != null ? qualification.getName() : null;
+    }
+
+    public String getSpecializationName() {
+        return specialization != null ? specialization.getName() : null;
     }
 
     // Getters and setters...

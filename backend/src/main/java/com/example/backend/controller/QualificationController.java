@@ -1,5 +1,6 @@
 package com.example.backend.controller;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.model.Qualification;
 import com.example.backend.repository.QualificationRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/qualifications")
 public class QualificationController {
@@ -28,9 +31,10 @@ public class QualificationController {
     // Endpoint để lấy tất cả các qualifications
     @GetMapping
     public List<Qualification> getAllQualifications() {
-        return qualificationRepository.findAll();
+        List<Qualification> qualifications = qualificationRepository.findAll();
+        qualifications.sort(Comparator.comparingLong(Qualification::getId));
+        return qualifications;
     }
-
     // Endpoint để lấy một qualification dựa trên ID
     @GetMapping("/{id}")
     public Optional<Qualification> getQualificationById(@PathVariable Long id) {
