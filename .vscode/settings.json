@@ -2,5 +2,6 @@
     "java.project.sourcePaths": [
         "TEST",
         "backend/src/main/java/com/example/backend"
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }

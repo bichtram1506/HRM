@@ -57,27 +57,44 @@
           </div>
           <div class="form-group">
             <label for="department">Phòng ban:</label>
-            <input type="text" id="department" class="form-control" [(ngModel)]="newEmployee.departmentName" placeholder="Nhập phòng ban">
+            <select id="department" class="form-control" [(ngModel)]="newEmployee.department_id">
+              <option *ngFor="let department of departments" [value]="department.id">{{ department.name }}</option>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="employeeType">Loại nhân viên:</label>
-            <input type="text" id="employeeType" class="form-control" [(ngModel)]="newEmployee.employeeTypeName" placeholder="Nhập loại nhân viên">
+            <select id="employeeType" class="form-control" [(ngModel)]="newEmployee.employee_type_id" >
+              <option *ngFor="let type of employeeTypes" [value]="type.id">{{ type.name }}</option>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="level">Cấp độ:</label>
-            <input type="text" id="level" class="form-control" [(ngModel)]="newEmployee.levelName" placeholder="Nhập cấp độ">
+            <select id="level" class="form-control" [(ngModel)]="newEmployee.level_id" >
+              <option *ngFor="let level of levels" [value]="level.id">{{ level.name }}</option>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="position">Vị trí:</label>
-            <input type="text" id="position" class="form-control" [(ngModel)]="newEmployee.positionName" placeholder="Nhập vị trí">
+            <select id="position" class="form-control" [(ngModel)]="newEmployee.position_id" >
+              <option *ngFor="let position of positions" [value]="position.id">{{ position.name }}</option>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="qualification">Trình độ:</label>
-            <input type="text" id="qualification" class="form-control" [(ngModel)]="newEmployee.qualificationName" placeholder="Nhập trình độ">
+            <select id="qualification" class="form-control" [(ngModel)]="newEmployee.qualification_id" >
+              <option *ngFor="let qualification of qualifications" [value]="qualification.id">{{ qualification.name }}</option>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="specialization">Chuyên ngành:</label>
-            <input type="text" id="specialization" class="form-control" [(ngModel)]="newEmployee.specializationName" placeholder="Nhập chuyên ngành">
+            <select id="specialization" class="form-control" [(ngModel)]="newEmployee.specialization_id" >
+              <option *ngFor="let specialization of specializations" [value]="specialization.id">{{ specialization.name }}</option>
+            </select>
           </div>
         </div>
         <div class="modal-footer">
@@ -108,28 +125,47 @@
           </div>
           <div class="form-group">
             <label for="updateDepartment">Phòng ban:</label>
-            <input type="text" id="updateDepartment" class="form-control" [(ngModel)]="selectedEmployee.departmentName" placeholder="Nhập phòng ban">
+            <select name="updateDepartment" id="updateDepartment" class="form-control" [(ngModel)]="selectedEmployee.department_id">
+              <option *ngFor="let department of departments" [value]="department.id">{{ department.name }}</option>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="updateEmployeeType">Loại nhân viên:</label>
-            <input type="text" id="updateEmployeeType" class="form-control" [(ngModel)]="selectedEmployee.employeeTypeName" placeholder="Nhập loại nhân viên">
+            <select name="updateEmployeeType" id="updateEmployeeType" class="form-control" [(ngModel)]="selectedEmployee.employee_type_id">
+              <option *ngFor="let type of employeeTypes" [value]="type.id">{{ type.name }}</option>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="updateLevel">Cấp độ:</label>
-            <input type="text" id="updateLevel" class="form-control" [(ngModel)]="selectedEmployee.levelName" placeholder="Nhập cấp độ">
+            <select name="updateLevel" id="updateLevel" class="form-control" [(ngModel)]="selectedEmployee.level_id">
+              <option *ngFor="let level of levels" [value]="level.id">{{ level.name }}</option>
+            </select>
           </div>
+
+
           <div class="form-group">
             <label for="updatePosition">Vị trí:</label>
-            <input type="text" id="updatePosition" class="form-control" [(ngModel)]="selectedEmployee.positionName" placeholder="Nhập vị trí">
+            <select name="updatePosition" id="updatePosition" class="form-control" [(ngModel)]="selectedEmployee.position_id">
+              <option *ngFor="let position of positions" [value]="position.id" [selected]="selectedEmployee.position_id === position.id">{{ position.name }}</option>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="updateQualification">Trình độ:</label>
-            <input type="text" id="updateQualification" class="form-control" [(ngModel)]="selectedEmployee.qualificationName" placeholder="Nhập trình độ">
+            <select name="updateQualification" id="updateQualification" class="form-control" [(ngModel)]="selectedEmployee.qualification_id">
+              <option *ngFor="let qualification of qualifications" [value]="qualification.id" [selected]="selectedEmployee.qualification_id === qualification.id">{{ qualification.name }}</option>
+            </select>
           </div>
-          <div>
+
+          <div class="form-group">
             <label for="updateSpecialization">Chuyên ngành:</label>
-            <input type="text" id="updateSpecialization" class="form-control" [(ngModel)]="selectedEmployee.specializationName" placeholder="Nhập chuyên ngành">
+            <select name="updateSpecialization" id="updateSpecialization" class="form-control" [(ngModel)]="selectedEmployee.specialization_id">
+              <option *ngFor="let specialization of specializations" [value]="specialization.id" [selected]="selectedEmployee.specialization_id === specialization.id">{{ specialization.name }}</option>
+            </select>
           </div>
+
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Cập nhật</button>

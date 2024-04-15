@@ -1,5 +1,4 @@
 package com.example.backend.controller;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.model.Employee;
 import com.example.backend.repository.EmployeeRepository;
 
-@CrossOrigin(origins = "http://localhost:4200")
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {

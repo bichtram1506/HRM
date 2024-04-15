@@ -1,23 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserComponent } from './components/user/user.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { DepartmentComponent } from './components/department/department.component';
-import { EmployeeComponent } from './components/employee/employee.component';
-import { LevelComponent } from './components/level/level.component';
 import { AppComponent } from './app.component';
+import { DepartmentComponent } from './components/department/department.component';
+import { EmployeeTypeComponent } from './components/employee-type/employee-type.component';
+import { EmployeeComponent } from './components/employee/employee.component';
 import { HomeComponent } from './components/home/home.component';
+import { LevelComponent } from './components/level/level.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { PositionComponent } from './components/position/position.component';
 import { QualificationComponent } from './components/qualification/qualification.component';
 import { SpecializationComponent } from './components/specialization/specialization.component';
-import { EmployeeTypeComponent } from './components/employee-type/employee-type.component';
-import { PositionComponent } from './components/position/position.component'; // Import PositionComponent
-import { SpecializationService } from './services/specialization.service';
+import { UserComponent } from './components/user/user.component';
+import { SalaryComponent } from './salary/salary.component'; // Import SalaryComponent
 import { EmployeeTypeService } from './services/employee-type.service';
-import { PositionService } from './services/position.service'; // Import PositionService
+import { PositionService } from './services/position.service';
+import { SalaryService } from './services/salary.service'; // Import SalaryService
+import { SpecializationService } from './services/specialization.service';
 
 const routes: Routes = [
   { path: 'users', component: UserComponent },
@@ -28,7 +30,8 @@ const routes: Routes = [
   { path: 'qualifications', component: QualificationComponent },
   { path: 'specializations', component: SpecializationComponent },
   { path: 'employee-types', component: EmployeeTypeComponent },
-  { path: 'positions', component: PositionComponent }, // Add PositionComponent route
+  { path: 'positions', component: PositionComponent },
+  { path: 'salaries', component: SalaryComponent }, // Add SalaryComponent route
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
@@ -43,7 +46,8 @@ const routes: Routes = [
     QualificationComponent,
     SpecializationComponent,
     EmployeeTypeComponent,
-    PositionComponent // Add PositionComponent to declarations
+    PositionComponent,
+    SalaryComponent, // Add SalaryComponent to declarations
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ const routes: Routes = [
   providers: [
     SpecializationService,
     EmployeeTypeService,
-    PositionService // Add PositionService to providers
+    PositionService,
+    SalaryService, // Add SalaryService to providers
   ],
   bootstrap: [AppComponent],
 })
