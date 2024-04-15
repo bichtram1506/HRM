@@ -1,0 +1,151 @@
+<div class="heading-container">
+  <h2 class="mb-4">Danh sách Phân công</h2>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nhân viên</th>
+        <th scope="col">Mã</th>
+        <th scope="col">Ngày bắt đầu</th>
+        <th scope="col">Ngày kết thúc</th>
+        <th scope="col">Mục đích</th>
+        <th scope="col">Ghi chú</th>
+        <th scope="col">Trạng thái</th>
+        <th scope="col">Địa điểm</th>
+        <th scope="col">Thao tác</th> <!-- Added for actions -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let assignment of assignments">
+        <td>{{ assignment.employee_id }}</td>
+        <td>{{ assignment.code }}</td>
+        <td>{{ assignment.start_date | date }}</td>
+        <td>{{ assignment.end_date | date }}</td>
+        <td>{{ assignment.purpose }}</td>
+        <td>{{ assignment.notes }}</td>
+        <td>{{ assignment.status }}</td>
+        <td>{{ assignment.location }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="showUpdateForm(assignment)">Sửa</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteAssignment(assignment.id)">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="mt-4">
+  <button class="btn btn-primary" (click)="toggleAddForm()">Thêm mới</button>
+</h3>
+
+<!-- Modal for Add Assignment -->
+<div *ngIf="showAddForm" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-content">
+      <form (submit)="addAssignment()">
+        <div class="modal-header">
+          <h5 class="modal-title">Thêm mới Phân công</h5>
+          <button type="button" class="close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Add assignment form fields here -->
+          <div class="form-group">
+            <label for="employeeId">Nhân viên:</label>
+            <input type="text" id="employeeId" class="form-control" [(ngModel)]="newAssignment.employee_id" placeholder="Nhập mã nhân viên">
+          </div>
+          <div class="form-group">
+            <label for="code">Mã:</label>
+            <input type="text" id="code" class="form-control" [(ngModel)]="newAssignment.code" placeholder="Nhập mã phân công">
+          </div>
+          <div class="form-group">
+            <label for="startDate">Ngày bắt đầu:</label>
+            <input type="date" id="startDate" class="form-control" [(ngModel)]="newAssignment.start_date">
+          </div>
+          <div class="form-group">
+            <label for="endDate">Ngày kết thúc:</label>
+            <input type="date" id="endDate" class="form-control" [(ngModel)]="newAssignment.end_date">
+          </div>
+          <div class="form-group">
+            <label for="purpose">Mục đích:</label>
+            <input type="text" id="purpose" class="form-control" [(ngModel)]="newAssignment.purpose" placeholder="Nhập mục đích">
+          </div>
+          <div class="form-group">
+            <label for="notes">Ghi chú:</label>
+            <input type="text" id="notes" class="form-control" [(ngModel)]="newAssignment.notes" placeholder="Nhập ghi chú">
+          </div>
+          <div class="form-group">
+            <label for="status">Trạng thái:</label>
+            <input type="text" id="status" class="form-control" [(ngModel)]="newAssignment.status" placeholder="Nhập trạng thái">
+          </div>
+          <div class="form-group">
+            <label for="location">Địa điểm:</label>
+            <input type="text" id="location" class="form-control" [(ngModel)]="newAssignment.location" placeholder="Nhập địa điểm">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Thêm</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Update Assignment -->
+<div *ngIf="isUpdateFormVisible" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-content">
+      <form (submit)="updateAssignment()">
+        <div class="modal-header">
+          <h5 class="modal-title">Cập nhật Phân công</h5>
+          <button type="button" class="close" (click)="closeModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Update assignment form fields here -->
+          <div class="form-group">
+            <label for="updateEmployeeId">Nhân viên:</label>
+            <input type="text" id="updateEmployeeId" class="form-control" [(ngModel)]="selectedAssignment.employee_id" placeholder="Nhập mã nhân viên">
+          </div>
+          <div class="form-group">
+            <label for="updateCode">Mã:</label>
+            <input type="text" id="updateCode" class="form-control" [(ngModel)]="selectedAssignment.code" placeholder="Nhập mã phân công">
+          </div>
+          <div class="form-group">
+            <label for="updateStartDate">Ngày bắt đầu:</label>
+            <input type="date" id="updateStartDate" class="form-control" [(ngModel)]="selectedAssignment.start_date">
+          </div>
+          <div class="form-group">
+            <label for="updateEndDate">Ngày kết thúc:</label>
+            <input type="date" id="updateEndDate" class="form-control" [(ngModel)]="selectedAssignment.end_date">
+          </div>
+          <div class="form-group">
+            <label for="updatePurpose">Mục đích:</label>
+            <input type="text" id="updatePurpose" class="form-control" [(ngModel)]="selectedAssignment.purpose" placeholder="Nhập mục đích">
+          </div>
+          <div class="form-group">
+            <label for="updateNotes">Ghi chú:</label>
+            <input type="text" id="updateNotes" class="form-control" [(ngModel)]="selectedAssignment.notes" placeholder="Nhập ghi chú">
+          </div>
+          <div class="form-group">
+            <label for="updateStatus">Trạng thái:</label>
+            <input type="text" id="updateStatus" class="form-control" [(ngModel)]="selectedAssignment.status" placeholder="Nhập trạng thái">
+          </div>
+          <div class="form-group">
+            <label for="updateLocation">Địa điểm:</label>
+            <input type="text" id="updateLocation" class="form-control" [(ngModel)]="selectedAssignment.location" placeholder="Nhập địa điểm">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Cập nhật</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
